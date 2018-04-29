@@ -100,13 +100,20 @@ CircularInt& CircularInt::operator -=(CircularInt& num) {
 }
 
 CircularInt& CircularInt::operator *=(int x) {
+    cout<<"only x - start"<<endl;
     this-> sum *= x;
     this-> sum = check(this-> sum);
+    cout<<"only x - end"<<endl;
+
     return *this;
 }
 CircularInt& CircularInt::operator *=(CircularInt& num) {
+        cout<<"only num - start"<<endl;
+
     this -> sum *= num.sum;
     this-> sum = check(this-> sum);
+        cout<<"only num - end"<<endl;
+
     return *this;
 }
 
@@ -180,17 +187,18 @@ CircularInt CircularInt :: operator*(int x){
     temp.sum = temp.check(temp.sum);
     return temp;
 }
-CircularInt operator*(int x, const CircularInt& num){
-    CircularInt temp{num.first,num.last};
-    temp.sum = num.sum;
-    temp.sum *=x;
-    temp.sum = temp.check(temp.sum);
-    return temp;
-}
+
 CircularInt CircularInt :: operator*(const CircularInt& num){
     CircularInt temp{this-> first, this-> last};
     temp.sum = this ->sum;
     temp.sum *= num.sum;
+    temp.sum = temp.check(temp.sum);
+    return temp;
+}
+CircularInt operator*(int x, const CircularInt& num){
+    CircularInt temp{num.first,num.last};
+    temp.sum = num.sum;
+    temp.sum *=x;
     temp.sum = temp.check(temp.sum);
     return temp;
 }
@@ -217,8 +225,7 @@ CircularInt CircularInt::operator/(int x)const{
       }
       return *this;
     }
-    
-    CircularInt CircularInt::operator/ (CircularInt& num)const{
+CircularInt CircularInt::operator/ (CircularInt& num)const{
       try{
         if(num.sum == 0) {
           throw "Division by zero is forbidden!";
@@ -260,7 +267,6 @@ CircularInt& CircularInt::operator/=(int num){
       }
       return *this;
     }
-    
 CircularInt& CircularInt::operator/=(CircularInt& other){
     try{
         if(other.sum == 0) {
@@ -281,7 +287,6 @@ CircularInt& CircularInt::operator/=(CircularInt& other){
      }
     return *this;
 }
-        
 CircularInt operator/ (int x, CircularInt& num){
          try{
         if(num.sum == 0) {
