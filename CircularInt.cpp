@@ -108,14 +108,14 @@ CircularInt& CircularInt::operator *=(int x) {
     return *this;
 }
 CircularInt& CircularInt::operator *=(CircularInt& num) {
-        cout<<"only num - start = " << num.sum <<endl;
-    num.sum = check(num.sum);
-            cout<<"only num - start after change = " << num.sum <<endl;
+    cout<<"only num - start, sum = " << num.sum <<endl;
+    cout<<"first = " << num.first <<endl;
+    cout<<"last = " << num.last <<endl;
+    this -> sum *= num.sum;
+    cout<<"only num - before check = " << this-> sum <<endl;
 
-    //this -> sum *= num.sum;
-    this-> sum = check(this-> sum*= num.sum);
+    this-> sum = check(this-> sum);
         cout<<"only num - end = " << this-> sum <<endl;
-
     return *this;
 }
 
