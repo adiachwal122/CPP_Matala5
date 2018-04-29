@@ -8,6 +8,7 @@
 CircularInt :: CircularInt(int f, int l){
     this -> first = f;
     this -> last = l;
+    this -> mod = (l-f)+1;
     this -> sum = f;
 }
 CircularInt::CircularInt(const CircularInt& other){
@@ -26,7 +27,7 @@ int CircularInt :: check(int x){
         x = this -> last + x;
     } 
     else if (x > this -> last){
-        x = x % (this -> last) ;
+        x = x % (this -> mod) ;
     }
     if(x==0)
         x=this->last;
