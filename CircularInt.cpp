@@ -10,7 +10,14 @@ CircularInt :: CircularInt(int f, int l){
     this -> last = l;
     this -> sum = f;
 }
-
+CircularInt::CircularInt(const CircularInt& other){
+      int first = other.first;
+      int last = other.last;
+      int sum =other.sum;
+      this->first = first;
+      this->last = last;
+      this->sum = sum;
+}
 CircularInt::~CircularInt() {
 }
 
