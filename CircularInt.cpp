@@ -34,7 +34,13 @@ int CircularInt :: check(int x){
 ostream&  operator<<(ostream& out, const CircularInt& a){
     return out << a.sum;
 }
-
+inline istream& operator>> (istream& is, CircularInt& cirInt) {
+        int current;
+        is>>current;
+	cirInt.sum = current;
+	cirInt.check(cirInt.sum);
+        return is;  
+    }
 bool CircularInt::operator >(const CircularInt & num) const {return this -> sum > num.sum;}
 bool CircularInt::operator >(const int x)const {return this -> sum > x;}
 
