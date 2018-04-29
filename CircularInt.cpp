@@ -28,38 +28,34 @@ ostream&  operator<<(ostream& out, const CircularInt& a){
     return out << a.sum;
 }
 
-bool CircularInt::operator >(const CircularInt & num) const {
-    return this -> sum > num.sum;
-}
-bool CircularInt::operator >(int x) {
-    return this -> sum > x;
-}
+bool CircularInt::operator >(const CircularInt & num) const {return this -> sum > num.sum;}
+bool CircularInt::operator >(const int x)const {return this -> sum > x;}
 
 bool CircularInt::operator >=(const CircularInt & num) const {
         return this ->sum >= num.sum;
 }
-bool CircularInt::operator >=(int x) {
+bool CircularInt::operator >=(const int x) const {
         return this ->sum >= x;
 }
 
 bool CircularInt::operator <(const CircularInt & num) const {
     return this ->sum < num.sum;
 }
-bool CircularInt::operator <(int x) {
+bool CircularInt::operator <(const int x)const {
     return this ->sum < x;
 }
 
 bool CircularInt::operator <=(const CircularInt & num) const {
     return this -> sum <= num.sum;
 }
-bool CircularInt::operator <=(int x) {
+bool CircularInt::operator <=(const int x) const {
     return this -> sum <= x;
 }
 
 bool CircularInt:: operator ==(const CircularInt& num ) const{
     return ((this -> sum == num.sum) && (this -> first == num.first) && (this -> last == num.last));
 }
-bool CircularInt:: operator ==(int x ){
+bool CircularInt:: operator ==(const int x )const{
     return (this -> sum == x);
 } 
 
@@ -70,7 +66,7 @@ bool CircularInt :: operator != (const CircularInt& num){
                  return false; 
       return true;
 }
-bool CircularInt :: operator != (int x){
+bool CircularInt :: operator != (const int x) const{
     return (this -> sum != x);
 }
 
@@ -223,7 +219,7 @@ CircularInt CircularInt::operator/ (int x)const{
       }
       return *this;
     }
- CircularInt& CircularInt::operator/=(int num){
+CircularInt& CircularInt::operator/=(int num){
                try{
         if(num == 0) {
           throw "Division by zero is forbidden!";
