@@ -77,7 +77,7 @@ bool CircularInt :: operator != (int x){
 CircularInt& CircularInt :: operator=(const CircularInt& num){
     this->first = num.first;
     this->last = num.last;
-    this->sum = num.sum;
+    this->sum = check(num.sum);
     return *this;
 }
 CircularInt& CircularInt::operator=(int x) {
@@ -111,19 +111,14 @@ CircularInt& CircularInt::operator *=(CircularInt& num) {
     return *this;
 }
 
-CircularInt& CircularInt::operator /=( int x) {
+/*CircularInt& CircularInt::operator /=( int x) {
     this-> sum =  check((this-> sum)/x);
     return *this;
 }
 CircularInt& CircularInt::operator /=(CircularInt& num){
     return operator /=(num.sum);
 }
-
-CircularInt& CircularInt::operator %=( int x) {
-    this -> sum = (this -> sum % x) % this -> last;
-    return *this;
-}
-
+*/
 CircularInt& CircularInt::operator++() {
     this -> sum = check(this -> sum + 1);
     return *this;
@@ -172,13 +167,13 @@ CircularInt CircularInt :: operator-(){
 CircularInt CircularInt :: operator-(int x){
     CircularInt temp{this-> first,this-> last};
     temp.sum = this -> sum;
-    temp -= x;
+    temp.sum = check(temp.sum - x);
     return temp;
 }
 CircularInt operator-(int x, const CircularInt& num){
     CircularInt temp{num.first,num.last};
     temp.sum = num.sum;
-    temp = -(temp-x);
+    temp.sum = temp.check(x-temp.sum);
     return temp;
 }
 CircularInt CircularInt :: operator-(const CircularInt& num){
@@ -206,35 +201,88 @@ CircularInt CircularInt :: operator*(const CircularInt& num){
     return temp;
 }
 
-/*CircularInt CircularInt :: operator/(int x){
-    CircularInt temp{this-> first,this-> last};
-    temp.sum = this -> sum;
-    temp /= x;
-    return temp;
-}*/
 
-CircularInt operator/(int x, const CircularInt& num){
-    CircularInt temp{num.first,num.last};
-    temp.sum = num.sum;
-    temp /=x;
-    return temp;
-}
-
-CircularInt CircularInt :: operator/(const CircularInt& num){
-    CircularInt temp{this-> first, this-> last};
-    temp.sum = this ->sum;
-    temp /= num.sum;
-    return temp;
-}
- 
-int CircularInt:: operator /( int x){
-    if(this -> sum % x == 0){
-        this -> sum = (this -> sum/x) % this -> last;
-        return this -> sum;
+CircularInt CircularInt::operator/ (int x)const{
+      try{
+        if(x == 0) {
+          throw "Division by zero is forbidden!";
+        }
+        if(sum%x != 0) {
+          double divi = (sum*1.0)/x;
+          ostringstream oss;
+          oss << "There is no number " << divi << " in {" << first << "," << last << "} such that " << divi << "*" << x << "=" << sum; 
+          string msg = oss.str();
+          throw msg;
+        }
+        CircularInt result(*this);
+        result.sum /= x;
+        result.check(result.sum);
+        return result;
+      }catch (const char* msg) {
+        cerr << msg << endl;
+      }
+      return *this;
     }
-    else{
-        cout<<"There is no number x in {"<<this -> first <<", "<< this->last <<"} such that x*"<<x<<"="<<this->sum;
-        //throw logic_error();
+ CircularInt& CircularInt::operator/=(int num){
+               try{
+        if(num == 0) {
+          throw "Division by zero is forbidden!";
+        }
+        if(sum%num != 0) {
+          double divi = (sum*1.0)/num;
+          ostringstream oss;
+          oss << "There is no number " << divi << " in {" << first << "," << last << "} such that " << divi << "*" << num << "=" << sum; 
+          string msg = oss.str();
+          throw msg;
+        }
+        this-> sum /= num;
+        check(this-> sum);
+        return *this;
+      }catch (const char* msg) {
+        cerr << msg << endl;
+      }
+      return *this;
     }
-}
-
+    
+CircularInt& CircularInt::operator/=(CircularInt& other){
+               try{
+        if(other.sum == 0) {
+          throw "Division by zero is forbidden!";
+        }
+        if(sum%other.sum != 0) {
+          double divi = (sum*1.0)/other.sum;
+          ostringstream oss;
+          oss << "There is no number " << divi << " in {" << first << "," << last << "} such that " << divi << "*" << other.sum << "=" << sum; 
+          string msg = oss.str();
+          throw msg;
+        }
+        this-> sum /= other.sum;
+        check(this-> sum);
+        return *this;
+      }catch (const char* msg) {
+        cerr << msg << endl;
+      }
+      return *this;
+    }
+        
+CircularInt CircularInt::operator/ (CircularInt& num)const{
+      try{
+        if(num.sum == 0) {
+          throw "Division by zero is forbidden!";
+        }
+        if(sum % num.sum != 0) {
+          double divi = (sum*1.0)/num.sum;
+          ostringstream oss;
+          oss << "There is no number " << divi << " in {" << first << "," << last << "} such that " << divi << "*" << num.sum << "=" << sum; 
+          string msg = oss.str();
+          throw msg;
+        }
+        CircularInt result(*this);
+        result.sum /= num.sum;
+        result.check(result.sum);
+        return result;
+      }catch (const char* msg) {
+        cerr << msg << endl;
+      }
+      return *this;
+    }
