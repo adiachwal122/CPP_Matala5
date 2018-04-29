@@ -213,7 +213,7 @@ CircularInt CircularInt::operator/ (int x)const{
         }
         CircularInt result(*this);
         result.sum /= x;
-        result.check(result.sum);
+        result.sum = result.check(result.sum);
         return result;
       }catch (const char* msg) {
         cerr << msg << endl;
@@ -233,7 +233,7 @@ CircularInt& CircularInt::operator/=(int num){
           throw msg;
         }
         this-> sum /= num;
-        check(this-> sum);
+        this -> sum = check(this-> sum);
         return *this;
       }catch (const char* msg) {
         cerr << msg << endl;
@@ -254,7 +254,7 @@ CircularInt& CircularInt::operator/=(CircularInt& other){
           throw msg;
         }
         this-> sum /= other.sum;
-        check(this-> sum);
+        this-> sum = check(this-> sum);
         return *this;
       }catch (const char* msg) {
         cerr << msg << endl;
@@ -276,7 +276,7 @@ CircularInt CircularInt::operator/ (CircularInt& num)const{
         }
         CircularInt result(*this);
         result.sum /= num.sum;
-        result.check(result.sum);
+        result.sum = result.check(result.sum);
         return result;
       }catch (const char* msg) {
         cerr << msg << endl;
