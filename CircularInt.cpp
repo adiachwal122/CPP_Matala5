@@ -22,18 +22,6 @@ CircularInt::CircularInt(const CircularInt& other){
 CircularInt::~CircularInt() {
 }
 
-/*int CircularInt :: check(int x){
-    if (x < this -> first){
-        x = this -> last + x;
-    } 
-    else if (x > this -> last){
-        x = (x % (this -> mod))+this->first-1 ;
-    }
-    if(x==0)
-        x=this->last;
-    return x;
-}   
-*/
 int CircularInt :: check(int fix){
         //check if greather then max
         if(fix > this-> last){
@@ -68,7 +56,8 @@ int CircularInt :: check(int fix){
           }
         } 
         return fix;
-    }
+}
+
 bool CircularInt::operator >(const CircularInt & num) const {return this -> sum > num.sum;}
 bool CircularInt::operator >(const int x)const {return this -> sum > x;}
 
@@ -136,29 +125,14 @@ CircularInt& CircularInt::operator -=(CircularInt& num) {
 }
 
 CircularInt& CircularInt::operator *=(int x) {
-    cout<<"only x  = " << x <<endl;
-    cout<<"first x = " << this ->first <<endl;
-    cout<<"last x = " << this ->last <<endl;
     this-> sum *= x;
-    cout<<"only x before = "<< this-> sum <<endl;
-
     this-> sum = check(this-> sum);
-    cout<<"only x - end = "<< this-> sum <<endl;
-
     return *this;
 }
-CircularInt& CircularInt::operator *=(CircularInt& num) {
-    cout<<"only num - start num, sum = " << this ->sum <<endl;
-    cout<<"first num = " << this ->first <<endl;
-    cout<<"last num = " << this ->last <<endl;
-    cout<<"only num - start num, sum = " << num.sum <<endl;
-    cout<<"first num = " << num.first <<endl;
-    cout<<"last num = " << num.last <<endl;
-    this -> sum *= num.sum;
-    cout<<"only num - before check = " << this-> sum <<endl;
 
+CircularInt& CircularInt::operator *=(CircularInt& num) {
+    this -> sum *= num.sum;
     this-> sum = check(this-> sum);
-        cout<<"only num - end = " << this-> sum <<endl;
     return *this;
 }
 
