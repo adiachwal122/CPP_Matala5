@@ -53,18 +53,14 @@ bool CircularInt::operator <=(const int x) const {
 }
 
 bool CircularInt:: operator ==(const CircularInt& num ) const{
-    return ((this -> sum == num.sum) && (this -> first == num.first) && (this -> last == num.last));
+    return this -> sum == num.sum;
 }
 bool CircularInt:: operator ==(const int x )const{
     return (this -> sum == x);
 } 
 
 bool CircularInt :: operator != (const CircularInt& num){
-      if ((this -> sum) == num.sum)
-          if ((this -> first) == num.first)
-              if ((this -> last) == num.last)
-                 return false; 
-      return true;
+    return this -> sum != num.sum;
 }
 bool CircularInt :: operator != (const int x) const{
     return (this -> sum != x);
