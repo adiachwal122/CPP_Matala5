@@ -11,25 +11,48 @@ class CircularInt{
         ~CircularInt();
         
         friend ostream& operator<<(ostream&, const CircularInt&);
+        int check(int x);
+        
         bool operator >(const CircularInt& ) const;
+        bool operator >(int );
+        
         bool operator >=(const CircularInt& ) const;
+        bool operator >=(int );
+        
         bool operator <(const CircularInt& ) const;
+        bool operator <(int );
+        
         bool operator <=(const CircularInt& ) const;
+        bool operator <=(int );
+        
         bool operator ==(const CircularInt& ) const;
-        bool operator!=(const CircularInt&);
-
+        bool operator ==(int );
+        
         CircularInt& operator=(const CircularInt&);
-        CircularInt& operator =(int);
+        CircularInt& operator=(int);
+        
+        bool operator!=(const CircularInt&);
+        bool operator!=(int);
+
+        
         
         CircularInt& operator +=(int);
-        CircularInt& operator -=(int);
-        CircularInt& operator *=(int);
-        CircularInt& operator /=(int);
-        CircularInt& operator %=(int);
+        CircularInt& operator +=(CircularInt&);
         CircularInt& operator ++();
         CircularInt& operator ++(int);
+        
+        CircularInt& operator -=(int);
+        CircularInt& operator -=(CircularInt&);
         CircularInt& operator --();
         CircularInt& operator --(int);
+        
+        CircularInt& operator *=(int);
+        CircularInt& operator *=(CircularInt&);
+        
+        CircularInt& operator /=(int);
+        CircularInt&operator /=(CircularInt&);
+        
+        CircularInt& operator %=(int);
         
         CircularInt operator+(int);
         CircularInt operator+(const CircularInt&);
@@ -48,5 +71,5 @@ class CircularInt{
         //CircularInt operator/(int);
         CircularInt operator/(const CircularInt&);
         friend CircularInt operator/(int,const CircularInt&);
-        int check(int x);
+        
 };
