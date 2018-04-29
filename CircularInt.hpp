@@ -44,12 +44,12 @@ class CircularInt{
         CircularInt& operator +=(int);
         CircularInt& operator +=(CircularInt&);
         CircularInt& operator ++();
-        CircularInt& operator ++(int);
+        CircularInt operator ++(int);
         
         CircularInt& operator -=(int);
         CircularInt& operator -=(CircularInt&);
         CircularInt& operator --();
-        CircularInt& operator --(int);
+        CircularInt operator --(int);
         
         CircularInt& operator *=(int);
         CircularInt& operator *=(CircularInt&);
