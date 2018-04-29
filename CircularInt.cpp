@@ -173,6 +173,7 @@ CircularInt CircularInt :: operator-(const CircularInt& num){
 
 CircularInt CircularInt :: operator*(int x){
     CircularInt temp{this-> first,this-> last};
+    temp.sum = this-> sum;
     temp.sum *=x;
     temp.sum = temp.check(temp.sum);
     return temp;
