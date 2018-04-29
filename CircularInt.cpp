@@ -28,6 +28,8 @@ int CircularInt :: check(int x){
     else if (x > this -> last){
         x = x % (this -> last) ;
     }
+    if(x==0)
+        x=this->last;
     return x;
 }   
 
