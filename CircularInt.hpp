@@ -1,5 +1,7 @@
 #include <iostream>
 using namespace std;
+#include <string>
+#include <sstream>
 
 class CircularInt{
     int first;
@@ -49,10 +51,8 @@ class CircularInt{
         CircularInt& operator *=(int);
         CircularInt& operator *=(CircularInt&);
         
-        CircularInt& operator /=(int);
-        CircularInt&operator /=(CircularInt&);
-        
-        CircularInt& operator %=(int);
+        /*CircularInt& operator /=(int);
+        CircularInt&operator /=(CircularInt&);*/
         
         CircularInt operator+(int);
         CircularInt operator+(const CircularInt&);
@@ -67,9 +67,10 @@ class CircularInt{
         CircularInt operator*(const CircularInt&);
         friend CircularInt operator*(int,const CircularInt&);
     
-        int operator /(int);
-        //CircularInt operator/(int);
-        CircularInt operator/(const CircularInt&);
-        friend CircularInt operator/(int,const CircularInt&);
+        CircularInt operator/ (int )const;
+        CircularInt operator/ (CircularInt&)const;
+        CircularInt& operator/=(int num);
+    CircularInt& operator/=(CircularInt& other);
+        friend CircularInt operator/(int, CircularInt& );
         
 };
