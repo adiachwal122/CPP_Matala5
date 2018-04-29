@@ -6,14 +6,17 @@ using namespace std;
 class CircularInt{
     int first;
     int last;
-    int sum;
     
     public:
+        int sum;
+
         CircularInt(int f, int l);
         CircularInt(const CircularInt&); // copy c'tor
         ~CircularInt();
 
         friend ostream& operator<<(ostream&, const CircularInt&);
+        friend istream& operator>> (istream& , CircularInt& );
+
         int check(int x);
         
         bool operator >(const CircularInt& ) const;
@@ -37,7 +40,6 @@ class CircularInt{
         bool operator!=(const CircularInt&);
         bool operator!=(const int) const;
 
-        
         
         CircularInt& operator +=(int);
         CircularInt& operator +=(CircularInt&);
@@ -75,3 +77,11 @@ class CircularInt{
         friend CircularInt operator/(int, CircularInt& );
         
 };
+
+        inline bool operator==(const int& nMember, const CircularInt& member){ return nMember == member.sum; }
+        inline bool operator!=(const int& nMember, const CircularInt& member){ return nMember != member.sum;}
+        inline bool operator< (const int& nMember, const CircularInt& member){ return nMember < member.sum; }
+        inline bool operator> (const int& nMember, const CircularInt& member){ return  nMember > member.sum;}
+        inline bool operator<=(const int& nMember, const CircularInt& member){ return nMember <= member.sum;}
+        inline bool operator>=(const int& nMember, const CircularInt& member){ return nMember >= member.sum;}
+        
