@@ -82,16 +82,17 @@ bool CircularInt :: operator != (const int x) const{
 CircularInt& CircularInt :: operator=(const CircularInt& num){
     this->first = num.first;
     this->last = num.last;
-    this->sum = check(num.sum);
+    this->sum = num.sum;
     return *this;
 }
 CircularInt& CircularInt::operator=(int x) {
-    this -> sum =check(x) ;
+    this -> sum =x ;
+    check(this -> sum);
     return *this;
 }
 
 CircularInt& CircularInt::operator +=( int x) {
-    this -> sum = check((this -> sum) + x);
+    this -> sum = check((this -> sum) += x);
     return *this;
 }
 CircularInt& CircularInt::operator +=(CircularInt& num) {
@@ -99,7 +100,7 @@ CircularInt& CircularInt::operator +=(CircularInt& num) {
 }
 
 CircularInt& CircularInt::operator -=( int x) {
-    this -> sum = check((this -> sum) - x);
+    this -> sum = check((this -> sum) -= x);
     return *this;
 }
 CircularInt& CircularInt::operator -=(CircularInt& num) {
@@ -107,30 +108,21 @@ CircularInt& CircularInt::operator -=(CircularInt& num) {
 }
 
 CircularInt& CircularInt::operator *=(int x) {
-    this-> sum =  check((this-> sum)*x);
+    this-> sum =  check((this-> sum)*=x);
      return *this;
 }
 CircularInt& CircularInt::operator *=(CircularInt& num) {
-    this -> sum *= num.sum;
-    check(this->sum);
+    this -> sum = check(this->sum *= num.sum);
     return *this;
 }
 
-/*CircularInt& CircularInt::operator /=( int x) {
-    this-> sum =  check((this-> sum)/x);
-    return *this;
-}
-CircularInt& CircularInt::operator /=(CircularInt& num){
-    return operator /=(num.sum);
-}
-*/
 CircularInt& CircularInt::operator++() {
     this -> sum = check(this -> sum + 1);
     return *this;
 }
 CircularInt& CircularInt::operator++(int x) {
     CircularInt temp{this-> first,this-> last};
-    this-> sum = check(++this-> sum);
+    this-> sum = check(this-> sum +1);
     return temp;
 }
 
@@ -140,26 +132,26 @@ CircularInt& CircularInt::operator--() {
 }
 CircularInt& CircularInt::operator--(int x) {
     CircularInt temp{this-> first,this-> last};
-    this-> sum = check(--this-> sum);
+    this-> sum = check(this-> sum-1);
     return temp;
 }
 
 CircularInt CircularInt :: operator+(int x){
     CircularInt temp{this-> first,this-> last};
     temp.sum = this -> sum;
-     temp.check(temp.sum + x);
+    temp.sum =temp.check(temp.sum + x);
     return temp;
 }
 CircularInt operator+(int x, const CircularInt& num){
     CircularInt temp{num.first,num.last};
     temp.sum = num.sum;
-    temp.check(temp.sum + x);
+    temp.sum = temp.check(temp.sum + x);
     return temp;
 }
 CircularInt CircularInt :: operator+(const CircularInt& num){
     CircularInt temp{this-> first, this-> last};
     temp.sum = this ->sum;
-    temp.check(temp.sum + num.sum);
+    temp.sum = temp.check(temp.sum + num.sum);
     return temp;
 }
 
@@ -196,7 +188,7 @@ CircularInt CircularInt :: operator*(int x){
 CircularInt operator*(int x, const CircularInt& num){
     CircularInt temp{num.first,num.last};
     temp.sum = num.sum;
-    temp.sum = temp.check(temp.sum*x);
+    temp.sum = temp.check(x*temp.sum);
     return temp;
 }
 CircularInt CircularInt :: operator*(const CircularInt& num){
