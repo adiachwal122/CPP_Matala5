@@ -77,11 +77,21 @@ class CircularInt{
         friend CircularInt operator/(int, CircularInt& );
         
 };
-
-        inline bool operator==(const int& nMember, const CircularInt& member){ return nMember == member.sum; }
-        inline bool operator!=(const int& nMember, const CircularInt& member){ return nMember != member.sum;}
-        inline bool operator< (const int& nMember, const CircularInt& member){ return nMember < member.sum; }
-        inline bool operator> (const int& nMember, const CircularInt& member){ return  nMember > member.sum;}
-        inline bool operator<=(const int& nMember, const CircularInt& member){ return nMember <= member.sum;}
-        inline bool operator>=(const int& nMember, const CircularInt& member){ return nMember >= member.sum;}
+    inline ostream&  operator<<(ostream& out, const CircularInt& a){
+        return out << a.sum;
+    }
+    
+    inline istream& operator>> (istream& is, CircularInt& cirInt) {
+        int current;
+        is>>current;
+	    cirInt.sum = current;
+	    cirInt.sum = cirInt.check(cirInt.sum);
+        return is;  
+    }
+    
+    inline bool operator==(const int& nMember, const CircularInt& member){ return nMember == member.sum; }
+    inline bool operator!=(const int& nMember, const CircularInt& member){ return nMember != member.sum;}
+    inline bool operator< (const int& nMember, const CircularInt& member){ return nMember < member.sum; }
+    inline bool operator> (const int& nMember, const CircularInt& member){ return  nMember > member.sum;}
+    inline bool operator<=(const int& nMember, const CircularInt& member){ return nMember <= member.sum;}        inline bool operator>=(const int& nMember, const CircularInt& member){ return nMember >= member.sum;}
         
