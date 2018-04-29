@@ -195,8 +195,7 @@ CircularInt CircularInt :: operator*(const CircularInt& num){
     return temp;
 }
 
-
-CircularInt CircularInt::operator/ (int x)const{
+CircularInt CircularInt::operator/(int x)const{
       try{
         if(x == 0) {
           throw "Division by zero is forbidden!";
@@ -208,7 +207,8 @@ CircularInt CircularInt::operator/ (int x)const{
           string msg = oss.str();
           throw msg;
         }
-        CircularInt result(*this);
+        CircularInt result(this-> first, this-> last);
+        result.sum = this ->sum;
         result.sum /= x;
         result.sum = result.check(result.sum);
         return result;
@@ -239,7 +239,7 @@ CircularInt& CircularInt::operator/=(int num){
     }
     
 CircularInt& CircularInt::operator/=(CircularInt& other){
-               try{
+    try{
         if(other.sum == 0) {
           throw "Division by zero is forbidden!";
         }
@@ -253,11 +253,11 @@ CircularInt& CircularInt::operator/=(CircularInt& other){
         this-> sum /= other.sum;
         this-> sum = check(this-> sum);
         return *this;
-      }catch (const char* msg) {
+    }catch (const char* msg) {
         cerr << msg << endl;
-      }
-      return *this;
-    }
+     }
+    return *this;
+}
         
 CircularInt CircularInt::operator/ (CircularInt& num)const{
       try{
@@ -271,7 +271,8 @@ CircularInt CircularInt::operator/ (CircularInt& num)const{
           string msg = oss.str();
           throw msg;
         }
-        CircularInt result(*this);
+        CircularInt result(this-> first, this-> last);
+        result.sum = this ->sum;
         result.sum /= num.sum;
         result.sum = result.check(result.sum);
         return result;
