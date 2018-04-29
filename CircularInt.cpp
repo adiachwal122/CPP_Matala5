@@ -22,7 +22,7 @@ CircularInt::CircularInt(const CircularInt& other){
 CircularInt::~CircularInt() {
 }
 
-int CircularInt :: check(int x){
+/*int CircularInt :: check(int x){
     if (x < this -> first){
         x = this -> last + x;
     } 
@@ -33,7 +33,42 @@ int CircularInt :: check(int x){
         x=this->last;
     return x;
 }   
-
+*/
+int CircularInt :: check(int fix){
+        //check if greather then max
+        if(fix > this-> last){
+          do{
+             fix %= this-> last;
+             //check if modolu is zero
+             if(fix == 0) fix = this-> last;
+             //check if smaller then min
+             if(fix < first) fix += first;
+          }while(fix > this-> last);
+          this-> sum = fix;
+          return fix;
+        }
+        //check if negative
+        if(fix < 0){
+          do{
+            fix *= -1;
+            fix %= this-> last;
+            fix = this-> last - fix;
+          }while(fix < 0);
+          return fix;
+        }
+        //check if smaller then min
+        if(fix < first){
+          fix += first;
+          while(fix > this-> last){
+               fix %= this-> last;
+               //check if modolu is zero
+               if(fix == 0) fix = this-> last;
+               //check if smaller then min
+               if(fix < first) fix += first;
+          }
+        } 
+        return fix;
+    }
 bool CircularInt::operator >(const CircularInt & num) const {return this -> sum > num.sum;}
 bool CircularInt::operator >(const int x)const {return this -> sum > x;}
 
