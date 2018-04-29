@@ -17,7 +17,7 @@ class CircularInt{
         friend ostream& operator<<(ostream&, const CircularInt&);
         friend istream& operator>> (istream& , CircularInt& );
 
-        int check(int x);
+        int check(int );
         
         bool operator >(const CircularInt& ) const;
         bool operator >(const int )const;
