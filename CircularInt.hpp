@@ -10,8 +10,9 @@ class CircularInt{
     
     public:
         CircularInt(int f, int l);
+        CircularInt(const CircularInt&); // copy c'tor
         ~CircularInt();
-        
+
         friend ostream& operator<<(ostream&, const CircularInt&);
         int check(int x);
         
