@@ -217,6 +217,29 @@ CircularInt CircularInt::operator/(int x)const{
       }
       return *this;
     }
+    
+    CircularInt CircularInt::operator/ (CircularInt& num)const{
+      try{
+        if(num.sum == 0) {
+          throw "Division by zero is forbidden!";
+        }
+        if(sum % num.sum != 0) {
+          double divi = (sum*1.0)/num.sum;
+          ostringstream oss;
+          oss << "There is no number " << divi << " in {" << first << "," << last << "} such that " << divi << "*" << num.sum << "=" << sum; 
+          string msg = oss.str();
+          throw msg;
+        }
+        CircularInt result(this-> first, this-> last);
+        result.sum = this ->sum;
+        result.sum /= num.sum;
+        result.sum = result.check(result.sum);
+        return result;
+      }catch (const char* msg) {
+        cerr << msg << endl;
+      }
+      return *this;
+    }
 CircularInt& CircularInt::operator/=(int num){
                try{
         if(num == 0) {
@@ -259,25 +282,24 @@ CircularInt& CircularInt::operator/=(CircularInt& other){
     return *this;
 }
         
-CircularInt CircularInt::operator/ (CircularInt& num)const{
-      try{
+CircularInt operator/ (int x, CircularInt& num){
+         try{
         if(num.sum == 0) {
           throw "Division by zero is forbidden!";
         }
-        if(sum % num.sum != 0) {
-          double divi = (sum*1.0)/num.sum;
+        if(x%num.sum != 0) {
+          double divi = (x*1.0)/num.sum;
           ostringstream oss;
-          oss << "There is no number " << divi << " in {" << first << "," << last << "} such that " << divi << "*" << num.sum << "=" << sum; 
+          oss << "There is no number " << divi << " in {" << num.first << "," << num.last << "} such that " << divi << "*" << num.sum << "=" << x; 
           string msg = oss.str();
           throw msg;
         }
-        CircularInt result(this-> first, this-> last);
-        result.sum = this ->sum;
-        result.sum /= num.sum;
-        result.sum = result.check(result.sum);
+        CircularInt result(num);
+        result.sum = result.check(x/result.sum);
         return result;
       }catch (const char* msg) {
         cerr << msg << endl;
       }
-      return *this;
+      return num;
     }
+    
