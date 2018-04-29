@@ -27,7 +27,7 @@ int CircularInt :: check(int x){
         x = this -> last + x;
     } 
     else if (x > this -> last){
-        x = x % (this -> mod) ;
+        x = (x % (this -> mod))+this->first-1 ;
     }
     if(x==0)
         x=this->last;
