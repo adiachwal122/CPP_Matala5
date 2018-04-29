@@ -6,7 +6,7 @@ using namespace std;
 class CircularInt{
     int first;
     int last;
-    
+    int mod;
     public:
         int sum;
 
