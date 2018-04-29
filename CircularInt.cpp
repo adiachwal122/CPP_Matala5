@@ -100,19 +100,19 @@ CircularInt& CircularInt::operator -=(CircularInt& num) {
 }
 
 CircularInt& CircularInt::operator *=(int x) {
-    cout<<"only x - start"<<endl;
+    cout<<"only x - start = " << x <<endl;
     this-> sum *= x;
     this-> sum = check(this-> sum);
-    cout<<"only x - end"<<endl;
+    cout<<"only x - end = "<< this-> sum <<endl;
 
     return *this;
 }
 CircularInt& CircularInt::operator *=(CircularInt& num) {
-        cout<<"only num - start"<<endl;
+        cout<<"only num - start = " << num.sum <<endl;
 
     this -> sum *= num.sum;
     this-> sum = check(this-> sum);
-        cout<<"only num - end"<<endl;
+        cout<<"only num - end = " << this-> sum <<endl;
 
     return *this;
 }
