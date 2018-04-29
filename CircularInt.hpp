@@ -16,19 +16,19 @@ class CircularInt{
         int check(int x);
         
         bool operator >(const CircularInt& ) const;
-        bool operator >(int );
+        bool operator >(const int )const;
         
         bool operator >=(const CircularInt& ) const;
-        bool operator >=(int );
+        bool operator >=(const int )const;
         
         bool operator <(const CircularInt& ) const;
-        bool operator <(int );
+        bool operator <(const int )const;
         
         bool operator <=(const CircularInt& ) const;
-        bool operator <=(int );
+        bool operator <=(const int )const;
         
         bool operator ==(const CircularInt& ) const;
-        bool operator ==(int );
+        bool operator ==(const int )const;
         
         CircularInt& operator=(const CircularInt&);
         CircularInt& operator=(int);
